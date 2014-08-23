@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Client Testimonials
-Plugin URI: http://sayful.net/wordpress/plugins
+Plugin URI: http://wordpress.org/plugins/client-testimonials/
 Description: Adds a custom post type for client testimonials.
 Author: Sayful Islam
 Version: 1.0
