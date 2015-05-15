@@ -125,12 +125,12 @@ Do you have questions or issues with Client Testimonials? [Ask for support here]
 
 == Screenshots ==
 
-1. Screenshot of testimonials custom post.
-2. Screenshot of testimonials custom post list.
-3. Screenshot of testimonials widget back-end.
-4. Screenshot of testimonials widget front-end display.
-5. Screenshot of testimonials front-end display.
-6. Screenshot of testimonials front-end display as slider.
+1. Screenshot of Client Testimonials Slide with one item
+2. Screenshot of Client Testimonials Slide with three items
+3. Screenshot of Client Testimonials No Slide with three items
+4. Screenshot of Client Testimonials Widget display
+5. Screenshot of Client Testimonials TinyMce button
+6. Screenshot of Client Testimonials TinyMce button popup
 
 == Changelog ==
 
