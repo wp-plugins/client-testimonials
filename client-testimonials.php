@@ -22,6 +22,7 @@ class Client_Testimonials {
 		add_action('save_post', array( $this, 'testimonials_save_post' ));
 		add_filter( 'manage_edit-testimonials_columns', array( $this, 'testimonials_edit_columns' ));
 		add_action( 'manage_posts_custom_column', array( $this, 'testimonials_columns'), 10, 2 );
+		add_action('admin_head', array( $this, 'add_mce_button' ));
 	}
 
 	/**
@@ -227,6 +228,31 @@ class Client_Testimonials {
 					echo get_the_post_thumbnail( get_the_ID(), array(64,64));
 				break;
 		}
+	}
+
+	// Hooks your functions into the correct filters
+	public function add_mce_button() {
+	    // check user permissions
+	    if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+	        return;
+	    }
+	    // check if WYSIWYG is enabled
+	    if ( 'true' == get_user_option( 'rich_editing' ) ) {
+	        add_filter( 'mce_external_plugins', array( $this, 'add_tinymce_plugin') );
+	        add_filter( 'mce_buttons', array( $this, 'register_mce_button') );
+	    }
+	}
+
+	// Declare script for new button
+	public function add_tinymce_plugin( $plugin_array ) {
+	    $plugin_array['testimonials_mce_button'] = plugin_dir_url( __FILE__ ) .'/js/mce-button.js';
+	    return $plugin_array;
+	}
+
+	// Register new button in the editor
+	public function register_mce_button( $buttons ) {
+	    array_push( $buttons, 'testimonials_mce_button' );
+	    return $buttons;
 	}
 }
 
