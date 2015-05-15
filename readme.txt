@@ -24,7 +24,7 @@ After installing and activating "Client Testimonials", go to `Admin Dashboard ->
 
 After creating testimonials, go to post or page where you want add testimonials.
 <ul>
-	<li>On Wordpress editor, you will get a TinyMce button for testimonials. Click on this button, a dropdown menu will be opened.</li>
+	<li>On Wordpress editor, you will get a TinyMce button (<a href="https://wordpress.org/plugins/client-testimonials/screenshots/">view Screenshots tab</a>) for testimonials. Click on this button, a dropdown menu will be opened.</li>
 	<li>Select "Client Testimonials Slide" if you want to add testimonials slide. or</li>
 	<li>select "Client Testimonials No Slide" if you do not want to add slide. and</li>
 	<li>Fill all fields as your need.</li>
