@@ -65,7 +65,7 @@
 					}
 				}, // End Client Testimonials Slide
 				{
-					text: 'Client Testimonials NO Slide',
+					text: 'Client Testimonials No Slide',
 					onclick: function() {
 						editor.windowManager.open( {
 							title: 'Insert Client Testimonials Shortcode',
