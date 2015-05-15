@@ -4,8 +4,8 @@
  */
 class Testimonial_Widget extends WP_Widget {
 	public function __construct() {
-		$widget_ops = array( 'classname' => 'testimonial_widget', 'description' => 'Display testimonial post type' );
-		parent::__construct( 'testimonial_widget', 'Testimonials', $widget_ops );
+		$widget_ops = array( 'classname' => 'testimonial_widget', 'description' => 'Display client testimonials' );
+		parent::__construct( 'testimonial_widget', 'Client Testimonials', $widget_ops );
 	}
 
 	public function widget( $args, $instance ) {
@@ -13,14 +13,13 @@ class Testimonial_Widget extends WP_Widget {
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 		$posts_per_page = (int) $instance['posts_per_page'];
 		$orderby = strip_tags( $instance['orderby'] );
-		$testimonial_id = ( null == $instance['testimonial_id'] ) ? '' : strip_tags( $instance['testimonial_id'] );
 
 		echo $before_widget;
 
 		if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
 
-		echo get_testimonial( $posts_per_page, $orderby, $testimonial_id );
+		echo do_shortcode( '[client-testimonials items_desktop="1" items_tablet="1" items_tablet_small="1" items_mobile="1" posts_per_page="'.$posts_per_page.'" orderby="'.$orderby.'"]' );
 
 		echo $after_widget;
 	}
@@ -30,17 +29,21 @@ class Testimonial_Widget extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['posts_per_page'] = (int) $new_instance['posts_per_page'];
 		$instance['orderby'] = strip_tags( $new_instance['orderby'] );
-		$instance['testimonial_id'] = ( null == $new_instance['testimonial_id'] ) ? '' : strip_tags( $new_instance['testimonial_id'] );
 
 		return $instance;
 	}
 
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'posts_per_page' => '1', 'orderby' => 'none', 'testimonial_id' => null ) );
+		$instance = wp_parse_args( (array) $instance, 
+			array( 
+				'title' => 'Client Testimonials', 
+				'posts_per_page' => '-1', 
+				'orderby' => 'none', 
+			)
+		);
 		$title = strip_tags( $instance['title'] );
 		$posts_per_page = (int) $instance['posts_per_page'];
 		$orderby = strip_tags( $instance['orderby'] );
-		$testimonial_id = ( null == $instance['testimonial_id'] ) ? '' : strip_tags( $instance['testimonial_id'] );
 		?>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></p>
@@ -57,9 +60,6 @@ class Testimonial_Widget extends WP_Widget {
 			<option value="modified" <?php selected( $orderby, 'modified' ); ?>>Modified</option>
 			<option value="rand" <?php selected( $orderby, 'rand' ); ?>>Random</option>
 		</select></p>
-
-		<p><label for="<?php echo $this->get_field_id( 'testimonial_id' ); ?>">Testimonial ID</label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'testimonial_id' ); ?>" name="<?php echo $this->get_field_name( 'testimonial_id' ); ?>" type="text" value="<?php echo $testimonial_id; ?>" /></p>
 		<?php
 	}
 }
